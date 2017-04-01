@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/meumoba2_xUw_icon.ico">
+    <title>MeuMOBA v1.0 BETA</title>
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link href="css/carousel.css" rel="stylesheet">
+    <link href="css/design.css" rel="stylesheet">
+	
+</head>
+<body>
+<div class="menu_principal ">
+	<a class="pull-left" href=""><img  src="img/meumoba.PNG" width="100px"></a>	    	   
+		<div class="btn-group posi">
+		
+		<button type="button" class="btn btn-success btn-lg dropdown-toggle glyphicon glyphicon-menu-hamburger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Anúncios <span class="caret"></span>
+		</button>
+
+		<ul class="dropdown-menu">
+			<li>
+				<a href="">Contas</a>
+			</li>
+
+			<li>
+				<a href="">Roupas</a>
+			</li>
+
+			<li>
+				<a href="">E-Sport</a>
+			</li>
+
+			<li>
+				<a href="">Elojob</a>
+			</li>
+
+			<li>
+				<a href="">Coaching</a>
+			</li>
+
+			<li>
+				<a href="">Cosplay</a>
+			</li>
+
+			<li>
+				<a href="">Outros</a>
+			</li>
+		</ul>
+
+		<a href="#" class="btn btn-success btn-lg glyphicon glyphicon-user ">
+			Cadastro
+		</a>
+
+		<a href="http://codepen.io/Rozeend/full/oZJyvo/" target="_blank" class="btn btn-success btn-lg glyphicon glyphicon-send ">
+			Contato
+		</a> 
+	</div><!-- btn-group -->
+
+
+	<div class="nav navbar-nav navbar-right">
+		<form class="navbar-form navbar-left" action="buscar.php" method="get" name="form_busca"  role="search">
+			<div class="form-group">
+				<input type="text" required="required" name="pesquisa" class="form-control" placeholder="Search">
+			</div>
+			<button type="submit" class="btn btn-success btn-md glyphicon glyphicon-search">
+				Buscar
+			</button>
+		</form>
+		<div class="pull-right ">
+		<div id="deslogado"></div>
+		</div>
+	</div> 
+	
+</div><!-- fim do menu principal-->	
+
+<div id="modal"></div><!--Inclue o modal que realiza o login -->
+<br><br><br><br>
+<!--Conteudo principal do site -->
+<form id='formcadastro' name="userForm" method="post">
+	<div class="borda_frame_menu conteudo_cadastro">
+		<div class="page-header">
+			<h1 class="titulo_cadastro">Cadastro de Usuários<br/></h1>
+			<br>
+			<br>
+			<a href="https://www.facebook.com/nicolasoliveira.rosendo"class="btn pull-right" data-toggle="tooltip" title="Cadastre-se com o facebook">
+				<img class="social_cadastro" src="img/social_icon/facebook_signin.PNG">
+			</a>
+			<a href="https://www.facebook.com/nicolasoliveira.rosendo"class="btn pull-right" data-toggle="tooltip" title="Cadastre-se com o Google Plus" >
+				<img class="social_cadastro" src="img/social_icon/g+_signin.PNG">
+			</a>
+			<a href="https://www.facebook.com/nicolasoliveira.rosendo"class="btn pull-right" data-toggle="tooltip" title="Cadastre-se com o Twitter">
+				<img class="social_cadastro" src="img/social_icon/twitter_signin.PNG">
+			</a>
+		<br/>
+		<br/>
+		</div>
+		
+		<div class="campos_cadastro">
+			<span class="lbl_nome">Nome:</span>
+			<input id="txtnome" name="Nome" type="text" maxlength="20" class="txt_nome" placeholder="ex:seu Nome" value="">
+
+			<span class="lbl_sobrenome"> SobreNome:</span>
+			<input id="txtsobrenome" name="SobreNome" maxlength="40" type="text" class="txt_sobrenome" placeholder="ex:seu SobreNome">
+			<br/>
+			<span class="erro_nome label label-danger">	Campo Nome em branco</span>
+			<span class="erro_sobrenome label label-danger"> Campo SobreNome em branco</span>
+			<br/>
+			<br/>
+			<span class="lbl_nome">Data de Nascimento:</span>
+			<input  maxlength="2" id="txtdia" class="txt_dia" placeholder="Dia" name="Dia">
+			/
+			<input  maxlength="2" id="txtmes" class="txt_mes" placeholder="Mês" name="Mes">
+			/
+			<input  maxlength="4" id="txtano" class="txt_ano" placeholder="Ano" name="Ano">
+
+			<span class="lbl_sobrenome"> Sexo:</span>
+			<select id="ddsexo" class="dd_sexo" name="Sexo">
+				<option value="" checked='checked'></option>
+				<option value="Feminino">Feminino</option>
+				<option value="Masculino">Masculino</option>
+			</select>
+			<br/>
+			<span class="erro_datanasc label label-danger">Campo Data de Nascimento invalido</span>
+			<span class="erro_sexo label label-danger" >Campo Sexo em branco</span>
+			<br/>
+			<br/>
+			<span class="lbl_nome"> Celular:</span>
+			<input onkeydown="formataCel(this, event);" id="txtcelular" name="Celular" type="phone"  maxlength="15" class="txt_cel" placeholder="ex: (11) 91111-1111">
+
+			<span class="lbl_sobrenome"> (Opcional)Telefone:</span>
+			<input onkeydown="formataCel(this, event);" id="txttelefone" name="Telefone" type="phone" maxlength="14" class="txt_tel" placeholder="ex: (11) 1234-5678">
+			<br/>
+			<span class="erro_cel label label-danger" >Campo Celular invalido</span>
+			<span class="erro_tel label label-danger" >Campo Telefone invalido</span>
+			<br/>
+			<br/>
+			<span class="lbl_nome"> E-mail:</span>
+			<input id="txtemail" type="email" name="Email" class="txt_email" placeholder="ex:user@meuMOBA.com">
+			<span class="erro_email label label-danger" >Campo Email invalido</span>
+			<br/>
+			<br/>
+			<span class="lbl_nome"> Confirmação de E-mail:</span>
+			<input id="txtconfirmaemail" name="ConfirmaEmail" type="email" class="txt_email" placeholder="ex:user@meuMOBA.com">
+			<span class="erro_confirma_email label label-danger" >Confirmação de Email invalida</span>
+			<br/>
+			<br/>
+			<span class="lbl_nome"> Senha:</span>
+			<input id="txtsenha"  type="password" name="Senha" class="txt_senha" placeholder="Max15digitos">
+
+			<span class="lbl_sobrenome"> Confirmação de Senha:</span>
+			<input id="txtconfirmasenha" name="ConfirmaSenha" type="password" class="txt_senha" placeholder="ex:userpassword">
+			<br/>
+			<span class="erro_senha label label-danger" >Campo Senha invalido</span>
+			<span class="erro_confirma_senha label label-danger" >Confirmação de senha invalida</span>
+			<br/>
+			<br/>
+			<div class="termos">
+				<input id="cbtermos" name="Termos" type="checkbox"> Aceito os Termos de Uso e a Política de Privacidade.
+				<span class="erro_termos label label-danger" >É necessário aceitar os Termos de Uso e a Política de Privacidade para continuar</span>
+			</div>
+			<br/>
+			<div class="feed">
+				<input id="cbfeed" name="Feed" type="checkbox" checked="checked" > Aceito receber notícias do site no e-mail fornecido nesse cadastro.
+			</div>
+
+			
+
+
+			<button  id="btncadastro"  value="cadastra" class="btn_cadastra">
+				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> 	Cadastrar</span>
+			</button>
+		</div>
+	</div>	
+</form>	
+<div id="rodape"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/jQuery_cadastro_validation.js"></script>
+<script src="js/Valida.js"></script>
+<script type="text/javascript" src="js/carrega_html.js"></script>
+
+<!--_______________________________________________-->
+</body>
+</html>
